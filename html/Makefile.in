@@ -45,8 +45,6 @@ install:
 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images
 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/images/logos
 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/includes
-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/includes/rss
-	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/includes/rss/extlib
 	$(INSTALL) -m 775 $(INSTALL_OPTS) -d $(DESTDIR)$(HTMLDIR)/ssi
 	$(INSTALL) -m 664 $(INSTALL_OPTS) robots.txt $(DESTDIR)$(HTMLDIR)
 #	$(INSTALL) -m 664 $(INSTALL_OPTS) docs/robots.txt $(DESTDIR)$(HTMLDIR)/docs
@@ -55,8 +53,6 @@ install:
 	rm -f $(DESTDIR)$(HTMLDIR)/main.html
 	rm -f $(DESTDIR)$(HTMLDIR)/side.html
 	$(INSTALL) -m 664 $(INSTALL_OPTS) jsonquery.html $(DESTDIR)$(HTMLDIR)
-	$(INSTALL) -m 664 $(INSTALL_OPTS) rss-corefeed.html $(DESTDIR)$(HTMLDIR)
-	$(INSTALL) -m 664 $(INSTALL_OPTS) rss-newsfeed.html $(DESTDIR)$(HTMLDIR)
 	for file in *.php; \
 	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR); done
 #	for file in media/*.wav; \
@@ -83,10 +79,6 @@ install:
 	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/images/logos; done
 	for file in includes/*.*; \
 	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/includes; done
-	for file in includes/rss/*.*; \
-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/includes/rss; done
-	for file in includes/rss/extlib/*.*; \
-	do $(INSTALL) -m 664 $(INSTALL_OPTS) $$file $(DESTDIR)$(HTMLDIR)/includes/rss/extlib; done
 
 install-unstripped:
 	$(MAKE) install

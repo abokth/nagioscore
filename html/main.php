@@ -17,79 +17,8 @@ $this_year = '2014';
 
 <script type='text/javascript'>
 	$(document).ready(function() {
-		loadRemoteFeed( // Our top banner splash.
-			'#splashbox0-contents', 'corebanner', 1,
-			'', processBannerItem, ''
-		);
-
-		loadRemoteFeed( // "Latest News"
-			'#splashbox4-contents', 'frontpage', 3,
-			'<ul>', processNewsItem, '<li><a href="http://www.nagios.org/news" target="_blank">More news...</a></li></ul>'
-		);
-
-		loadRemoteFeed( // "Don't Miss..."
-			'#splashbox5-contents', 'corepromo', 3,
-			'<ul>', processPromoItem, '</ul>'
-		);
-
 		getCoreStatus();
 	});
-
-	// Fetch an RSS feed and format HTML for the first n items.
-	function loadRemoteFeed(id, name, n, prefix, formatter, suffix) {
-		$.ajax({
-			type: 'GET',
-			url: 'http://www.nagios.org/backend/feeds/' + name + '/',
-			crossDomain: true,
-			success: function(d, status, jqXHR) {
-				// We should have Internet access, set the playlist HTML.
-				initializePlaylist();
-
-				var text = ''; // Start with empty text by default.
-
-				$(d).find('channel').find('item').each(function(index) {
-					var itemText = formatter($(this)); // Format the item's HTML.
-					if (itemText) text += itemText; // Append if non-empty.
-					return index+1 < n; // Only process n items.
-				});
-
-				// Only set the HTML if we have item text.
-				if (text) $(id).html(prefix + text + suffix);
-			}
-		});
-	}
-
-	function processBannerItem(item) {
-		return item.find('description').text();
-	}
-
-	function processNewsItem(item) {
-		var link = item.find('link').text();
-		var title = item.find('title').text();
-		return link && title
-			? '<li><a href="' + link + '" target="_blank">' + title + '</a></li>'
-			: '';
-	}
-
-	function processPromoItem(item) {
-		var description = item.find('description').text();
-		return description
-			? '<li>' + description + '</li>'
-			: '';
-	}
-
-
-	// Set our playlist HTML when we know we have Internet access.
-	var playlistInitialized = false;
-	function initializePlaylist() {
-		if (!playlistInitialized) {
-			playlistInitialized = true;
-			$('#splashbox3')
-				.addClass('splashbox3-full')
-				.removeClass('splashbox3-empty')
-				.html('<iframe width="100%" height="100%" src="//www.youtube.com/embed/videoseries?list=PLN-ryIrpC_mCUW1DFwZpxpAk00i60lSkE&iv_load_policy=3&rel=0" frameborder="0" allowfullscreen></iframe>');
-		}
-	}
 
 	// Get the daemon status JSON.
 	function getCoreStatus() {
