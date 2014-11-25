@@ -123,28 +123,7 @@ $this_year = '2015';
 			</ul>
 		</div>
 
-		<div id="splashbox3" class="splashbox3-empty"><!-- youtube playlist -->
-		</div>
-
 	</div><!-- end splashrow1 -->
-	
-	<div id="splashrow2">
-
-		<div id="splashbox4" class="splashbox splashbox-clear"><!-- latest news feed -->
-			<h2>Latest News</h2>
-			<div id="splashbox4-contents">
-				<?php @include(dirname(__FILE__).'/rss-newsfeed.html'); ?>
-			</div>
-		</div>
-
-		<div id="splashbox5" class="splashbox"><!-- core promo feed -->
-			<h2>Don't Miss...</h2>
-			<div id="splashbox5-contents">
-				<?php @include(dirname(__FILE__).'/rss-corefeed.html'); ?>
-			</div>
-		</div>
-
-	</div><!-- end splashrow2 -->
 
 </div><!-- end splashboxes-->
 
